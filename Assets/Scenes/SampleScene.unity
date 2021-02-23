@@ -350,7 +350,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.061402813
+        value: 0.043855205
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -416,7 +416,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!1001 &6652030594281645106
 PrefabInstance:

@@ -8,8 +8,8 @@ public abstract class Abstract_Ball : MonoBehaviour
 
     private Vector3 startPosition;
     private Rigidbody2D rb2d;
-    private float magnitude = 10f;  // Величина импульса для мяча
-    private float maxDistance = 2f; // Максимальаня дистанция, на которую может отдоляться мяч при запуске
+    private float magnitude = 8f;  // Величина импульса для мяча
+    private float maxDistance = 3f; // Максимальаня дистанция, на которую может отдоляться мяч при запуске
     private int bouncesNumber = 1;  // Количество отскоков для  мяча
     private bool interactable = true;   // Можно ли интерактировать с мячом
     LineRenderer aimRope;   // Верёвка, которая растягивается при прицеливании
