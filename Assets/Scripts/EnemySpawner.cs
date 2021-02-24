@@ -41,11 +41,11 @@ public class EnemySpawner : MonoBehaviour
                 enemyForSpawn = prefabMultiEnemy;
                 break;
         }
-        float halfWidthEnemyCollider = enemyForSpawn.GetComponent<Collider2D>().bounds.extents.x;
-        float halfHeightEnemyCollider = enemyForSpawn.GetComponent<Collider2D>().bounds.extents.y;
-        Vector2 spawnPosition = new Vector2(Random.Range(GameBordersManager.Instance.BorderLeft + halfWidthEnemyCollider,
-            GameBordersManager.Instance.BorderRight - halfWidthEnemyCollider), 
-            GameBordersManager.Instance.BorderTop + halfHeightEnemyCollider * 2);
+        float halfWidthEnemy = enemyForSpawn.GetComponent<SpriteRenderer>().bounds.extents.x;
+        float halfHeightEnemy = enemyForSpawn.GetComponent<SpriteRenderer>().bounds.extents.y;
+        Vector2 spawnPosition = new Vector2(Random.Range(GameBordersManager.Instance.BorderLeft + halfWidthEnemy,
+            GameBordersManager.Instance.BorderRight - halfWidthEnemy), 
+            GameBordersManager.Instance.BorderTop + halfHeightEnemy * 2);
         Instantiate(enemyForSpawn, spawnPosition, Quaternion.identity);
 
         spawnTimer.Run();
