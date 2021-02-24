@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameBorderManager : MonoBehaviour
+public class GameBordersInitializer : MonoBehaviour
 {
     #region Fields
 
