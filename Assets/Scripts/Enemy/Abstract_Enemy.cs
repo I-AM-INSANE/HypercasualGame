@@ -24,5 +24,11 @@ public class Abstract_Enemy : MonoBehaviour
         rb2d.AddForce(magnitude * Vector2.down, ForceMode2D.Impulse);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //if (collision.gameObject.name == "GameBorderBottom") 
+            // Вычитать снаряды у игрока
+    }
+
     #endregion
 }

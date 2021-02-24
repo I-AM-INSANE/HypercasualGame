@@ -18,7 +18,7 @@ public class BallSpawner : MonoBehaviour
 
     #region Methods
 
-    private void Awake()
+    private void Start()
     {
         spawnTimer = gameObject.AddComponent<Timer>();
         spawnTimer.Duration = 0.5f;
@@ -45,6 +45,7 @@ public class BallSpawner : MonoBehaviour
     private void SpawnBall()
     {
         createdBall = Instantiate(prefabBall);
+        GameManager.Instance.ProjectileNumber--;
         timerWasLaunched = false;
     }
 

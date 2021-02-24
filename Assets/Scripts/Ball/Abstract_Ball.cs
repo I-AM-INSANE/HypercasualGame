@@ -14,6 +14,7 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
     private int bouncesNumber = 1;  // Количество отскоков для  мяча
     private bool interactable = true;   // Можно ли интерактировать с мячом
     LineRenderer aimRope;   // Верёвка, которая растягивается при прицеливании
+    private bool ballIncreased = false; // Прибавился ли снаряд за столкновение с врагом
 
     SpriteRenderer spriteRenderer;
 
@@ -107,11 +108,16 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
 
     }
 
-
     private void CollisionWithEnemy(Collider2D collision)
     {
         Destroy(collision.gameObject);
         bouncesNumber++;
+
+        if (!ballIncreased)
+        {
+            GameManager.Instance.ProjectileNumber++;
+            ballIncreased = true;
+        }
     }
     #endregion
 }
