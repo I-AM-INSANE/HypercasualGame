@@ -41,7 +41,6 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
     }
     void Start()
     {
-
     }
 
     void Update()
@@ -96,7 +95,7 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
             Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         Color collisionObjColor = collision.GetComponent<SpriteRenderer>().color;
 
@@ -107,6 +106,7 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
             CollisionWithEnemy(collision);
 
     }
+
 
     private void CollisionWithEnemy(Collider2D collision)
     {
