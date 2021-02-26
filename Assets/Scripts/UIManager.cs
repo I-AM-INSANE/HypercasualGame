@@ -22,7 +22,10 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        ballsText.text = BallsPrefix + GameManager.Instance.ProjectileNumber.ToString();
+        if (GameManager.Instance.ProjectileNumber >= 0)
+            ballsText.text = BallsPrefix + GameManager.Instance.ProjectileNumber.ToString();
+        else
+            ballsText.text = BallsPrefix + '0';
     }
 
     #endregion

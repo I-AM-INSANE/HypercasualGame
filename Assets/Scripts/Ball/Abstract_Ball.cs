@@ -67,6 +67,7 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
                 rb2d.AddForce(direction * magnitude, ForceMode2D.Impulse);
                 interactable = false;
                 aimRope.enabled = false;
+                GetComponent<CircleCollider2D>().radius = GetComponent<SpriteRenderer>().bounds.extents.x;  // Коллайдер меняю на адекватный размер
             }
             else
                 transform.position = startPosition;

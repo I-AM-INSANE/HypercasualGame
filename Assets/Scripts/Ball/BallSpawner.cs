@@ -38,9 +38,11 @@ public class BallSpawner : MonoBehaviour
                 timerWasLaunched = true;
             }
         }
-        if (spawnTimer.Finished && timerWasLaunched)
+        if (spawnTimer.Finished && timerWasLaunched) 
+        { 
             if (GameManager.Instance.ProjectileNumber > 0)
                 SpawnBall();
+        }
     }
 
     private void SpawnBall()

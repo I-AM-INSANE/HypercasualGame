@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 865478252}
   - component: {fileID: 865478253}
   m_Layer: 8
-  m_Name: Ball
+  m_Name: prefabBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,7 +133,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.21333334
+  m_Radius: 0.5
 --- !u!120 &865478253
 LineRenderer:
   m_ObjectHideFlags: 0
