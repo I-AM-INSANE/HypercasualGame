@@ -22,12 +22,16 @@ public class GameManager : MonoBehaviour
         set { projectileNumber = value; }
     }
 
+    public int KillStreak { get; set; }
+
     #endregion
 
     #region Methods
 
     private void Awake()
     {
+        KillStreak = 0;
+
         if (instance == null)
             instance = this;
         else

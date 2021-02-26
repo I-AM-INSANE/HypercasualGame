@@ -15,6 +15,8 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
     private bool interactable = true;   // Можно ли интерактировать с мячом
     LineRenderer aimRope;   // Верёвка, которая растягивается при прицеливании
     private bool ballIncreased = false; // Прибавился ли снаряд за столкновение с врагом
+    private int ballsForEnemyKill;  // Количество мячей, которые прибавятся за убийство врага
+    private int killCount = 0;  // Количество убийств данным шариком (нужно для проверки на серию убийств)
 
     SpriteRenderer spriteRenderer;
 
@@ -92,8 +94,18 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
         bouncesNumber--;
         spriteRenderer.color = collision.gameObject.GetComponent<SpriteRenderer>().color;   // Меняем цвет мяча на цвет стены
 
-        if (bouncesNumber < 0)  // Уничтожаем мяч, если кол-во отскоков меньше 0
+        if (bouncesNumber < 0) // Уничтожаем мяч, если кол-во отскоков меньше 0
+        {
             Destroy(gameObject);
+            OnStreakEnd();
+
+        }
+    }
+
+    private void OnStreakEnd()
+    {
+        if (killCount == 0)
+            GameManager.Instance.KillStreak = 0;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -112,12 +124,29 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
     {
         Destroy(collision.gameObject);
         bouncesNumber++;
+        killCount++;
 
         if (!ballIncreased)
         {
-            GameManager.Instance.ProjectileNumber++;
+            BallIncreased();
             ballIncreased = true;
         }
     }
+
+    private void BallIncreased()    // Увеличиваем количество мячей у игрока
+    {
+        GameManager.Instance.KillStreak++;
+        if (GameManager.Instance.KillStreak > 0 && GameManager.Instance.KillStreak <= 3)
+            ballsForEnemyKill = 1;
+        if (GameManager.Instance.KillStreak > 3 && GameManager.Instance.KillStreak <= 6)
+            ballsForEnemyKill = 2;
+        if (GameManager.Instance.KillStreak > 6 && GameManager.Instance.KillStreak <= 10)
+            ballsForEnemyKill = 3;
+        if (GameManager.Instance.KillStreak > 10)
+            ballsForEnemyKill = 4;
+
+        GameManager.Instance.ProjectileNumber += ballsForEnemyKill;
+    }
+
     #endregion
 }
