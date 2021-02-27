@@ -42,11 +42,11 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
         spriteRenderer = GetComponent<SpriteRenderer>();
         Physics2D.IgnoreLayerCollision(8, 8);
     }
-    void Start()
+    private void Start()
     {
     }
 
-    void Update()
+    private void Update()
     {
         aimRope.SetPosition(1, transform.position);     // Посылаем позицию мяча для Line renderer 
     }
@@ -64,6 +64,7 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
             Vector3 direction = startPosition - transform.position;
             if (Vector3.Distance(transform.position, startPosition) > minDistanceToShot)
             {
+                GetComponent<Trajectory>().DestroyTrajectory();    // Уничтожаем траекторию при запуске снаряда
                 rb2d.AddForce(direction * magnitude, ForceMode2D.Impulse);
                 interactable = false;
                 aimRope.enabled = false;
