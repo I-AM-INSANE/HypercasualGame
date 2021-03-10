@@ -49,6 +49,7 @@ public class BallSpawner : MonoBehaviour
     {
         createdBall = Instantiate(prefabBall);
         GameManager.Instance.ProjectileNumber--;
+        GameManager.Instance.BallsOnScreen++;
         timerWasLaunched = false;
     }
 

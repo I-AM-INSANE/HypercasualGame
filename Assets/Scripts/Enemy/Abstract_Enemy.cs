@@ -28,7 +28,8 @@ public class Abstract_Enemy : MonoBehaviour
     {
         if (transform.position.y < GameBordersManager.Instance.BorderBottom)
         {
-            GameManager.Instance.ProjectileNumber -= 3;
+            if (GameManager.Instance.ProjectileNumber > 0)
+                GameManager.Instance.ProjectileNumber -= 3;
             Destroy(gameObject);
         }
     }

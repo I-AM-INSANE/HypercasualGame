@@ -99,15 +99,15 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
         if (bouncesNumber < 0) // Уничтожаем мяч, если кол-во отскоков меньше 0
         {
             Destroy(gameObject);
-            OnStreakEnd();
-
+            GameManager.Instance.BallsOnScreen--;
+            if (killCount == 0)
+                OnStreakEnd();
         }
     }
 
     private void OnStreakEnd()
     {
-        if (killCount == 0)
-            GameManager.Instance.KillStreak = 0;
+        GameManager.Instance.KillStreak = 0;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -140,9 +140,9 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
         GameManager.Instance.KillStreak++;
         if (GameManager.Instance.KillStreak > 0 && GameManager.Instance.KillStreak <= 3)
             ballsForEnemyKill = 1;
-        if (GameManager.Instance.KillStreak > 3 && GameManager.Instance.KillStreak <= 6)
+        if (GameManager.Instance.KillStreak > 2 && GameManager.Instance.KillStreak <= 6)
             ballsForEnemyKill = 2;
-        if (GameManager.Instance.KillStreak > 6 && GameManager.Instance.KillStreak <= 10)
+        if (GameManager.Instance.KillStreak > 5 && GameManager.Instance.KillStreak <= 10)
             ballsForEnemyKill = 3;
         if (GameManager.Instance.KillStreak > 10)
             ballsForEnemyKill = 4;
