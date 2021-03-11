@@ -26,10 +26,13 @@ public class Abstract_Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < GameBordersManager.Instance.BorderBottom)
+        if (transform.position.y < ScreenUtils.ScreenBottom)
         {
             if (GameManager.Instance.ProjectileNumber > 0)
+            {
+                GameManager.Instance.KillStreak = 0;
                 GameManager.Instance.ProjectileNumber -= 3;
+            }
             Destroy(gameObject);
         }
     }

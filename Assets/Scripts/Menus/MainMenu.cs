@@ -7,6 +7,7 @@ public class MainMenu : Menu<MainMenu>
     public void OnPlayPressed()
     {
         LevelLoader.LoadNextLevel();
+        base.OnBackPressed();
         GameMenu.Open();
     }
 

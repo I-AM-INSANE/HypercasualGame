@@ -54,6 +54,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (projectileNumber < 0)
+            projectileNumber = 0;
+
         if (!lose)
         {
             if (projectileNumber <= 0 && ballsOnScreen <= 0)

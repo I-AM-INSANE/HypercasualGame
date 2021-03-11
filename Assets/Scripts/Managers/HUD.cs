@@ -24,8 +24,6 @@ public class HUD : MonoBehaviour
     {
         if (GameManager.Instance.ProjectileNumber >= 0)
             ballsText.text = BallsPrefix + GameManager.Instance.ProjectileNumber.ToString();
-        else
-            ballsText.text = BallsPrefix + '0';
     }
 
     #endregion

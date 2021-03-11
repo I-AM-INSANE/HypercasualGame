@@ -49,9 +49,14 @@ public class EnemySpawner : MonoBehaviour
 
         float halfWidthEnemy = enemyForSpawn.GetComponent<SpriteRenderer>().bounds.extents.x;
         float halfHeightEnemy = enemyForSpawn.GetComponent<SpriteRenderer>().bounds.extents.y;
-        Vector2 spawnPosition = new Vector2(Random.Range(GameBordersManager.Instance.BorderLeft + halfWidthEnemy,
-            GameBordersManager.Instance.BorderRight - halfWidthEnemy), 
-            GameBordersManager.Instance.BorderTop + halfHeightEnemy * 2);
+        float gameBorderLeft = GameObject.Find("GameBorderLeft").transform.position.x;
+        float gameBorderRight = GameObject.Find("GameBorderRight").transform.position.x;
+        float halfWidthGameBorderLeft = GameObject.Find("GameBorderLeft").GetComponent<BoxCollider2D>().bounds.extents.x;
+        float halfWidthGameBorderRight = GameObject.Find("GameBorderRight").GetComponent<BoxCollider2D>().bounds.extents.x;
+
+        Vector2 spawnPosition = new Vector2(Random.Range(gameBorderLeft + halfWidthGameBorderLeft + halfWidthEnemy, 
+            gameBorderRight - halfWidthGameBorderRight - halfWidthEnemy), ScreenUtils.ScreenTop + halfHeightEnemy * 2);
+
         Instantiate(enemyForSpawn, spawnPosition, Quaternion.identity);
 
         spawnTimer.Run();

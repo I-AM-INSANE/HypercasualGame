@@ -10,4 +10,9 @@ public class GameMenu : Menu<GameMenu>
 
         PauseMenu.Open();
     }
+
+    private void Update()
+    {
+        
+    }
 }

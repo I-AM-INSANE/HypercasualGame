@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Abstract_Ball : MonoBehaviour, IInteractable
 {
@@ -94,7 +95,7 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
     private void CollisionWithBorder(Collision2D collision)
     {
         bouncesNumber--;
-        spriteRenderer.color = collision.gameObject.GetComponent<SpriteRenderer>().color;   // Меняем цвет мяча на цвет стены
+        spriteRenderer.color = collision.gameObject.GetComponent<Image>().color; // Меняем цвет мяча на цвет стены
 
         if (bouncesNumber < 0) // Уничтожаем мяч, если кол-во отскоков меньше 0
         {
