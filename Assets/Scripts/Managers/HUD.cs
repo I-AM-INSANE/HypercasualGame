@@ -8,7 +8,10 @@ public class HUD : MonoBehaviour
     #region Fields
 
     private Text ballsText;
-    private const string BallsPrefix = "Balls: ";
+    private Text scoreText;
+    private const string ScorePrefix = "Score: ";
+    private Text multiplierText;
+    private const string MultiplierPrefix = "X";
 
     #endregion
 
@@ -16,14 +19,23 @@ public class HUD : MonoBehaviour
 
     private void Awake()
     {
-        ballsText = gameObject.GetComponentInChildren<Text>();
-        ballsText.text = BallsPrefix + GameManager.Instance.ProjectileNumber.ToString();
+        ballsText = transform.Find("BallsImage").transform.Find("BallsText").GetComponent<Text>();
+        ballsText.text = GameManager.Instance.ProjectileNumber.ToString();
+
+        scoreText = transform.Find("ScoreText").GetComponent<Text>();
+        scoreText.text = ScorePrefix + 5;
+
+        multiplierText = transform.Find("MultiplierText").GetComponent<Text>();
+        multiplierText.text = MultiplierPrefix + GameManager.Instance.KillStreak.ToString();
     }
 
     private void Update()
     {
         if (GameManager.Instance.ProjectileNumber >= 0)
-            ballsText.text = BallsPrefix + GameManager.Instance.ProjectileNumber.ToString();
+            ballsText.text = GameManager.Instance.ProjectileNumber.ToString();
+
+        scoreText.text = ScorePrefix + GameManager.Instance.Score.ToString();
+        multiplierText.text = MultiplierPrefix + GameManager.Instance.KillStreak.ToString();
     }
 
     #endregion

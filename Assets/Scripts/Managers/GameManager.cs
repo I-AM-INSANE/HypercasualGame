@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     private int projectileNumber = 10;
     private int ballsOnScreen = 0;
+    private int score = 0;
 
     private bool lose = false;
 
@@ -32,6 +33,12 @@ public class GameManager : MonoBehaviour
     {
         get { return projectileNumber; }
         set { projectileNumber = value; }
+    }
+
+    public int Score
+    {
+        get { return score; }
+        set { score = value; }
     }
 
     public int KillStreak { get; set; }
@@ -74,6 +81,7 @@ public class GameManager : MonoBehaviour
         KillStreak = 0;
         projectileNumber = 10;
         ballsOnScreen = 0;
+        score = 0;
         lose = false;
     }
 

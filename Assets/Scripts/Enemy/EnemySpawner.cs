@@ -35,16 +35,23 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         GameObject enemyForSpawn = default;
-        int rnd = Random.Range(0, 2);
-        switch (rnd)
+        int rnd = Random.Range(0, 4);
+        //switch (rnd)
+        //{
+        //    case 0:
+        //        enemyForSpawn = prefabEnemy;
+        //        enemyForSpawn.GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Count)];
+        //        break;
+        //    case 1:
+        //        enemyForSpawn = prefabMultiEnemy;
+        //        break;
+        //}
+        if (rnd == 3)
+            enemyForSpawn = prefabMultiEnemy;
+        else
         {
-            case 0:
-                enemyForSpawn = prefabEnemy;
-                enemyForSpawn.GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Count)];
-                break;
-            case 1:
-                enemyForSpawn = prefabMultiEnemy;
-                break;
+            enemyForSpawn = prefabEnemy;
+            enemyForSpawn.GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Count)];
         }
 
         float halfWidthEnemy = enemyForSpawn.GetComponent<SpriteRenderer>().bounds.extents.x;

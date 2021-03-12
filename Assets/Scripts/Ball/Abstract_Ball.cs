@@ -128,6 +128,7 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
         Destroy(collision.gameObject);
         bouncesNumber++;
         killCount++;
+        GameManager.Instance.Score++;
 
         if (!ballIncreased)
         {
