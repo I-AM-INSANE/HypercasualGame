@@ -197,7 +197,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6372350161523616991}
+      - m_Target: {fileID: 3737428942401057867}
         m_MethodName: OnRestartPressed
         m_Mode: 1
         m_Arguments:
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6372350161523616991}
+      - m_Target: {fileID: 3737428942401057867}
         m_MethodName: OnMainMenuPressed
         m_Mode: 1
         m_Arguments:
@@ -771,9 +771,9 @@ GameObject:
   - component: {fileID: 6355428721658322171}
   - component: {fileID: 8624366068380650137}
   - component: {fileID: 6255052614344681312}
-  - component: {fileID: 6372350161523616991}
+  - component: {fileID: 3737428942401057867}
   m_Layer: 5
-  m_Name: LoseMenu
+  m_Name: GameOverMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -861,7 +861,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6372350161523616991
+--- !u!114 &3737428942401057867
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1038,4 +1038,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: YOU LOSE
+  m_Text: GAME OVER

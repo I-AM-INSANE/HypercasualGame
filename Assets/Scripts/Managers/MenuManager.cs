@@ -10,7 +10,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private SettingsMenu settingsMenuPrefab;
     [SerializeField] private PauseMenu pauseMenuPrefab;
     [SerializeField] private GameMenu gameMenuPrefab;
-    [SerializeField] private LoseMenu loseMenuPrefab;
+    [SerializeField] private GameOverMenu gameOverMenuPrefab;
 
     [SerializeField] private Transform menuParent;
 
@@ -55,7 +55,7 @@ public class MenuManager : MonoBehaviour
 
         Object.DontDestroyOnLoad(menuParent.gameObject);
 
-        Menu[] menuPrefabs = { mainMenuPrefab, settingsMenuPrefab, pauseMenuPrefab, gameMenuPrefab, loseMenuPrefab };
+        Menu[] menuPrefabs = { mainMenuPrefab, settingsMenuPrefab, pauseMenuPrefab, gameMenuPrefab, gameOverMenuPrefab };
 
         foreach (Menu menuPrefab in menuPrefabs)
         {

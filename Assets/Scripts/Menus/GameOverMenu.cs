@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoseMenu : Menu<LoseMenu>
+public class GameOverMenu : Menu<GameOverMenu>
 {
     public void OnRestartPressed()
     {

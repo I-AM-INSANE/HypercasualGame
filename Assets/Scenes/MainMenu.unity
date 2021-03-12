@@ -225,7 +225,7 @@ MonoBehaviour:
     type: 3}
   gameMenuPrefab: {fileID: 8092511095903386553, guid: 7421ed6929f50144e891e1809ba6d595,
     type: 3}
-  loseMenuPrefab: {fileID: 6372350161523616991, guid: 35cb5f8d802738440b51c7236367dea6,
+  gameOverMenuPrefab: {fileID: 3737428942401057867, guid: 35cb5f8d802738440b51c7236367dea6,
     type: 3}
   menuParent: {fileID: 0}
 --- !u!4 &123642673

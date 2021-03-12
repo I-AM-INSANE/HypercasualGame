@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
             if (projectileNumber <= 0 && ballsOnScreen <= 0)
             {
                 Time.timeScale = 0;
-                LoseMenu.Open();
+                GameOverMenu.Open();
                 lose = true;
             }
         }
