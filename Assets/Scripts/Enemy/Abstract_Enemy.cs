@@ -31,6 +31,7 @@ public class Abstract_Enemy : MonoBehaviour
             if (GameManager.Instance.ProjectileNumber > 0)
             {
                 GameManager.Instance.KillStreak = 0;
+                GameManager.Instance.ChangeMultiplier();
                 GameManager.Instance.ProjectileNumber -= 3;
             }
             Destroy(gameObject);

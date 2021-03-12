@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private int projectileNumber = 10;
     private int ballsOnScreen = 0;
     private int score = 0;
+    private int multiplier = 1;
 
     private bool lose = false;
 
@@ -43,6 +44,8 @@ public class GameManager : MonoBehaviour
 
     public int KillStreak { get; set; }
 
+    public int Multiplier => multiplier;
+
     #endregion
 
     #region Methods
@@ -50,8 +53,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-
-        KillStreak = 0;
 
         if (instance != null)
             Destroy(gameObject);
@@ -76,9 +77,22 @@ public class GameManager : MonoBehaviour
             
     }
 
+    public void ChangeMultiplier()
+    {
+        if (KillStreak >= 0 && KillStreak <= 3)
+            multiplier = 1;
+        if (KillStreak > 2 && KillStreak <= 6)
+            multiplier = 2;
+        if (KillStreak > 5 && KillStreak <= 10)
+            multiplier = 3;
+        if (KillStreak > 10)
+            multiplier = 4;
+    }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         KillStreak = 0;
+        multiplier = 1;
         projectileNumber = 10;
         ballsOnScreen = 0;
         score = 0;

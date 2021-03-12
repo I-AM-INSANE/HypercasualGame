@@ -35,7 +35,7 @@ public class HUD : MonoBehaviour
             ballsText.text = GameManager.Instance.ProjectileNumber.ToString();
 
         scoreText.text = ScorePrefix + GameManager.Instance.Score.ToString();
-        multiplierText.text = MultiplierPrefix + GameManager.Instance.KillStreak.ToString();
+        multiplierText.text = MultiplierPrefix + GameManager.Instance.Multiplier.ToString();
     }
 
     #endregion

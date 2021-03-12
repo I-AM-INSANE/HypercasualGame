@@ -109,6 +109,7 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
     private void OnStreakEnd()
     {
         GameManager.Instance.KillStreak = 0;
+        GameManager.Instance.ChangeMultiplier();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -140,15 +141,8 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
     private void BallIncreased()    // Увеличиваем количество мячей у игрока
     {
         GameManager.Instance.KillStreak++;
-        if (GameManager.Instance.KillStreak > 0 && GameManager.Instance.KillStreak <= 3)
-            ballsForEnemyKill = 1;
-        if (GameManager.Instance.KillStreak > 2 && GameManager.Instance.KillStreak <= 6)
-            ballsForEnemyKill = 2;
-        if (GameManager.Instance.KillStreak > 5 && GameManager.Instance.KillStreak <= 10)
-            ballsForEnemyKill = 3;
-        if (GameManager.Instance.KillStreak > 10)
-            ballsForEnemyKill = 4;
-
+        GameManager.Instance.ChangeMultiplier();
+        ballsForEnemyKill = GameManager.Instance.Multiplier;
         GameManager.Instance.ProjectileNumber += ballsForEnemyKill;
     }
 
