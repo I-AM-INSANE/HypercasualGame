@@ -18,6 +18,7 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
     private bool ballIncreased = false; // Прибавился ли снаряд за столкновение с врагом
     private int ballsForEnemyKill;  // Количество мячей, которые прибавятся за убийство врага
     private int killCount = 0;  // Количество убийств данным шариком (нужно для проверки на серию убийств)
+    private bool wasCollision = false;  // Запрещает затронуть 2 GameBorder одновременно
 
     SpriteRenderer spriteRenderer;
 
@@ -88,8 +89,14 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("GameBorder"))
+        if (collision.gameObject.CompareTag("GameBorder") && !wasCollision)
             CollisionWithBorder(collision);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("GameBorder"))
+            wasCollision = false;
     }
 
     private void CollisionWithBorder(Collision2D collision)
@@ -104,6 +111,7 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
             if (killCount == 0)
                 OnStreakEnd();
         }
+        wasCollision = true;
     }
 
     private void OnStreakEnd()

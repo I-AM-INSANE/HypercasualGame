@@ -36,16 +36,6 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject enemyForSpawn = default;
         int rnd = Random.Range(0, 4);
-        //switch (rnd)
-        //{
-        //    case 0:
-        //        enemyForSpawn = prefabEnemy;
-        //        enemyForSpawn.GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Count)];
-        //        break;
-        //    case 1:
-        //        enemyForSpawn = prefabMultiEnemy;
-        //        break;
-        //}
         if (rnd == 3)
             enemyForSpawn = prefabMultiEnemy;
         else
