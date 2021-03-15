@@ -5,8 +5,23 @@ using UnityEngine.UI;
 
 public class GameBorder : MonoBehaviour
 {
-    [SerializeField] RectTransform rectTransform;
-    [SerializeField] BoxCollider2D boxCollider;
+    private RectTransform rectTransform;
+    private BoxCollider2D boxCollider;
+
+    public Enum_Elements Element { get; private set; }
+
+    private void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        boxCollider = GetComponent<BoxCollider2D>();
+
+        if (GetComponent<Image>().color == Color.red)
+            Element = Enum_Elements.Fire;
+        else if (GetComponent<Image>().color == Color.blue)
+            Element = Enum_Elements.Water;
+        else
+            Element = Enum_Elements.Standard;
+    }
 
     private void Update()
     {

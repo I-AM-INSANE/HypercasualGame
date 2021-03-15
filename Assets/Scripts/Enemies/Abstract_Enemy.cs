@@ -2,21 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Abstract_Enemy : MonoBehaviour
+public abstract class Abstract_Enemy : MonoBehaviour
 {
     #region Fields
 
-    Rigidbody2D rb2d;
+    private Rigidbody2D rb2d;
     private float magnitude;
+    protected Enum_Elements element = Enum_Elements.Standard;
+
+    #endregion
+
+    #region Properties
+
+    public Enum_Elements Element { get { return element; } }
 
     #endregion
 
     #region Methods
 
-    private void Awake()
+    protected virtual void Awake()
     {
         magnitude = Random.Range(1f, 3f);
-        rb2d = GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();       
     }
 
     private void Start()

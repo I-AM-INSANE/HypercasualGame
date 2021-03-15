@@ -1,7 +1,40 @@
 fileFormatVersion: 2
-guid: a62e262c3da56a645bb1cc7add47af2d
+guid: 2106073068397414a97e4c955a0671b1
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 1736543990918627622
+    second: SpriteSheet_WaterBall_0
+  - first:
+      213: 1885005605035208790
+    second: SpriteSheet_WaterBall_1
+  - first:
+      213: -6358583845308622499
+    second: SpriteSheet_WaterBall_2
+  - first:
+      213: -1805005836002829212
+    second: SpriteSheet_WaterBall_3
+  - first:
+      213: -796795901358564885
+    second: SpriteSheet_WaterBall_4
+  - first:
+      213: -2180701618497998299
+    second: WaterBall_0
+  - first:
+      213: 6230035366642985712
+    second: WaterBall_1
+  - first:
+      213: 5156523693323527932
+    second: WaterBall_2
+  - first:
+      213: -6350998332577906387
+    second: WaterBall_3
+  - first:
+      213: 3221192661986484609
+    second: WaterBall_4
+  - first:
+      213: 1632308259352438899
+    second: WaterBall_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,12 +73,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 300
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -133,7 +166,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: WaterBall_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 9
+        width: 32
+        height: 17
+      alignment: 9
+      pivot: {x: 0.7, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 522be4c8e679cb1e0800000000000000
+      internalID: -2180701618497998299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterBall_1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 9
+        width: 31
+        height: 17
+      alignment: 9
+      pivot: {x: 0.7, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fa20e66828857650800000000000000
+      internalID: 6230035366642985712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterBall_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 9
+        width: 35
+        height: 17
+      alignment: 9
+      pivot: {x: 0.7, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf62f688af6af8740800000000000000
+      internalID: 5156523693323527932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterBall_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 9
+        width: 33
+        height: 17
+      alignment: 9
+      pivot: {x: 0.7, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2188916aa8bcd7a0800000000000000
+      internalID: -6350998332577906387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WaterBall_4
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 9
+        width: 30
+        height: 17
+      alignment: 9
+      pivot: {x: 0.7, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37863aaa6bf17a610800000000000000
+      internalID: 1632308259352438899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

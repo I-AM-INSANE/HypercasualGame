@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,23 +12,26 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
     private Rigidbody2D rb2d;
     private float magnitude = 10f;  // Величина импульса для мяча
     private float maxDistance = 1f; // Максимальаня дистанция, на которую может отдоляться мяч при запуске
-    private float minDistanceToShot = 0.2f;
+    private float minDistanceToShot = 0.2f; // Минимальное расстояние, на которое нужно отдалить мяч для его запуска
     private int bouncesNumber = 1;  // Количество отскоков для  мяча
     private bool interactable = true;   // Можно ли интерактировать с мячом
     LineRenderer aimRope;   // Верёвка, которая растягивается при прицеливании
-    private bool ballIncreased = false; // Прибавился ли снаряд за столкновение с врагом
     private int ballsForEnemyKill;  // Количество мячей, которые прибавятся за убийство врага
     private int killCount = 0;  // Количество убийств данным шариком (нужно для проверки на серию убийств)
     private bool wasCollision = false;  // Запрещает затронуть 2 GameBorder одновременно
 
-    SpriteRenderer spriteRenderer;
-
     #endregion
+
+    #region Properties
 
     bool IInteractable.IsInteractable
     {
         get { return interactable; }
     }
+
+    public Enum_Elements Element { get; private set; }
+
+    #endregion
 
     #region Methods
     private void Awake()
@@ -41,7 +45,7 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
         aimRope.startColor = Color.gray;
         aimRope.endColor = GetComponent<SpriteRenderer>().color;
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        Element = Enum_Elements.Standard;
         Physics2D.IgnoreLayerCollision(8, 8);
     }
     private void Start()
@@ -51,6 +55,8 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
     private void Update()
     {
         aimRope.SetPosition(1, transform.position);     // Посылаем позицию мяча для Line renderer 
+
+        transform.right = GetComponent<Rigidbody2D>().velocity.normalized;
     }
 
     private void OnMouseDrag()
@@ -90,7 +96,11 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("GameBorder") && !wasCollision)
+        {
             CollisionWithBorder(collision);
+            ChangeBallElement(collision);
+        }
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -102,7 +112,6 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
     private void CollisionWithBorder(Collision2D collision)
     {
         bouncesNumber--;
-        spriteRenderer.color = collision.gameObject.GetComponent<Image>().color; // Меняем цвет мяча на цвет стены
 
         if (bouncesNumber < 0) // Уничтожаем мяч, если кол-во отскоков меньше 0
         {
@@ -114,7 +123,22 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
         wasCollision = true;
     }
 
-    private void OnStreakEnd()
+    private void ChangeBallElement(Collision2D collision)   // Замена стихии мяча
+    {
+        if (collision.gameObject.GetComponent<GameBorder>().Element == Enum_Elements.Fire)
+        {
+            gameObject.GetComponent<Animator>().Play("Fireball");
+            Element = Enum_Elements.Fire;
+        }
+
+        if (collision.gameObject.GetComponent<GameBorder>().Element == Enum_Elements.Water)
+        {
+            gameObject.GetComponent<Animator>().Play("Waterball");
+            Element = Enum_Elements.Water;
+        }
+    }
+
+    private void OnStreakEnd()  // Закончить серию убийств
     {
         GameManager.Instance.KillStreak = 0;
         GameManager.Instance.ChangeMultiplier();
@@ -122,14 +146,10 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Color collisionObjColor = collision.GetComponent<SpriteRenderer>().color;
+        Enum_Elements enemyElement = collision.GetComponent<Abstract_Enemy>().Element;
 
-        if (collision.gameObject.CompareTag("Enemy") && spriteRenderer.color == collisionObjColor)  // Столкновение с врагом
+        if (collision.gameObject.CompareTag("Enemy") && Element == enemyElement)  // Столкновение с врагом
             CollisionWithEnemy(collision);
-
-        if (collision.gameObject.CompareTag("MultiEnemy") && spriteRenderer.color != Color.white)   // Столкновение с Мульти врагом
-            CollisionWithEnemy(collision);
-
     }
 
     private void CollisionWithEnemy(Collider2D collision)
@@ -139,11 +159,7 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
         killCount++;
         GameManager.Instance.Score++;
 
-        if (!ballIncreased)
-        {
-            BallIncreased();
-            ballIncreased = true;
-        }
+        BallIncreased();
     }
 
     private void BallIncreased()    // Увеличиваем количество мячей у игрока

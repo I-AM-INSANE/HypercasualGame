@@ -6,9 +6,9 @@ public class EnemySpawner : MonoBehaviour
 {
     #region Fields
 
-    [SerializeField] private GameObject prefabEnemy;
-    [SerializeField] private GameObject prefabMultiEnemy;
-    private List<Color> colors = new List<Color>();
+    [SerializeField] private GameObject EnemySkeletonPrefab;
+    [SerializeField] private GameObject EnemyPupmkinPrefab;
+    private List<GameObject> enemies = new List<GameObject>();
 
     Timer spawnTimer;
 
@@ -18,11 +18,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        colors.Add(new Color(219/255f, 0 / 255f, 255 / 255f, 255 / 255f));
-        colors.Add(new Color(255 / 255f, 0 / 255f, 0 / 255f, 255 / 255f));
+        enemies.Add(EnemySkeletonPrefab);
+        enemies.Add(EnemyPupmkinPrefab);
 
         spawnTimer = gameObject.AddComponent<Timer>();
-        spawnTimer.Duration = Random.Range(3f, 5f);
+        spawnTimer.Duration = Random.Range(2f, 4f);
         spawnTimer.Run();
     }
 
@@ -34,15 +34,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        GameObject enemyForSpawn = default;
-        int rnd = Random.Range(0, 4);
-        if (rnd == 3)
-            enemyForSpawn = prefabMultiEnemy;
-        else
-        {
-            enemyForSpawn = prefabEnemy;
-            enemyForSpawn.GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Count)];
-        }
+
+        GameObject enemyForSpawn = enemies[Random.Range(0, enemies.Count)];
 
         float halfWidthEnemy = enemyForSpawn.GetComponent<SpriteRenderer>().bounds.extents.x;
         float halfHeightEnemy = enemyForSpawn.GetComponent<SpriteRenderer>().bounds.extents.y;
