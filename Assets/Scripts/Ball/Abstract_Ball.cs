@@ -148,12 +148,25 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
     {
         Enum_Elements enemyElement = collision.GetComponent<Abstract_Enemy>().Element;
 
-        if (collision.gameObject.CompareTag("Enemy") && Element == enemyElement)  // Столкновение с врагом
-            CollisionWithEnemy(collision);
+        if (collision.gameObject.CompareTag("Enemy")) // Столкновение с врагом
+        {   
+            // Проверка соответствия стихий
+            if (enemyElement == Enum_Elements.Fire && Element == Enum_Elements.Water ||
+                enemyElement == Enum_Elements.Water && Element == Enum_Elements.Fire)
+            {
+                CollisionWithEnemy(collision);
+            }
+        }
     }
 
     private void CollisionWithEnemy(Collider2D collision)
     {
+        // Анимация врыва врагов
+        if (collision.gameObject.GetComponent<Abstract_Enemy>().Element == Enum_Elements.Water)
+            Instantiate(Resources.Load<GameObject>("FireBurst"), collision.gameObject.transform.position, Quaternion.identity);
+        if (collision.gameObject.GetComponent<Abstract_Enemy>().Element == Enum_Elements.Fire)
+            Instantiate(Resources.Load<GameObject>("SmokeBurst"), collision.gameObject.transform.position, Quaternion.identity);
+
         Destroy(collision.gameObject);
         bouncesNumber++;
         killCount++;

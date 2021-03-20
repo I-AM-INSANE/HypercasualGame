@@ -6,7 +6,7 @@ public class Enemy_Skeleton : Abstract_Enemy
 {
     protected override void Awake()
     {
-        element = Enum_Elements.Fire;
+        element = Enum_Elements.Water;
         base.Awake();
     }
 }

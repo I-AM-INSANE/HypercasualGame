@@ -15,9 +15,9 @@ public class GameBorder : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         boxCollider = GetComponent<BoxCollider2D>();
 
-        if (GetComponent<Image>().color == Color.red)
+        if (GetComponent<Image>().sprite.name == "Border_Fire")
             Element = Enum_Elements.Fire;
-        else if (GetComponent<Image>().color == Color.blue)
+        else if (GetComponent<Image>().sprite.name == "Border_Water")
             Element = Enum_Elements.Water;
         else
             Element = Enum_Elements.Standard;
