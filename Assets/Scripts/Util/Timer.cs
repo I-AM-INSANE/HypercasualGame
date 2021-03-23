@@ -30,6 +30,7 @@ public class Timer : MonoBehaviour
 	/// <value>duration</value>
 	public float Duration
     {
+		get { return totalSeconds; }
 		set
         {
 			if (!running)
@@ -38,7 +39,7 @@ public class Timer : MonoBehaviour
 			}
 		}
 	}
-	
+
 	/// <summary>
 	/// Gets whether or not the timer has finished running
 	/// This property returns false if the timer has never been started
