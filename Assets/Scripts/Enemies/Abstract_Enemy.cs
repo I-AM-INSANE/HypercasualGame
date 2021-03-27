@@ -9,6 +9,7 @@ public abstract class Abstract_Enemy : MonoBehaviour
     private Rigidbody2D rb2d;
     private float magnitude;
     protected Enum_Elements element = Enum_Elements.Standard;
+    protected string dyingAnimation;
 
     #endregion
 
@@ -43,6 +44,16 @@ public abstract class Abstract_Enemy : MonoBehaviour
             }
             Destroy(gameObject);
         }
+    }
+
+    public IEnumerator Dying()
+    {
+        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+        Animator anim = GetComponent<Animator>();
+        anim.Play(dyingAnimation);
+        GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        Destroy(gameObject);
     }
     #endregion
 }

@@ -62,19 +62,16 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (projectileNumber < 0)
-            projectileNumber = 0;
-
-        if (!lose)
+        if (projectileNumber <= 0)
         {
-            if (projectileNumber <= 0 && ballsOnScreen <= 0)
+            if (!lose)
             {
+                projectileNumber = 0;
                 Time.timeScale = 0;
                 GameOverMenu.Open();
                 lose = true;
             }
-        }
-            
+        }           
     }
 
     public void ChangeMultiplier()

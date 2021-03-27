@@ -27,6 +27,5 @@ public class GameBorder : MonoBehaviour
     {
         if (rectTransform.sizeDelta != Vector2.zero && rectTransform.sizeDelta != boxCollider.size)
             boxCollider.size = rectTransform.sizeDelta;
-
     }
 }

@@ -9,7 +9,7 @@ public class Grenade : Abstract_ExploddingTrapps
     private void Awake()
     {
         trapAnimName = "GrenadeExplosion";
-        explosionDelay = 2f;
+        explosionDelay = 1f;
     }
 
     #endregion

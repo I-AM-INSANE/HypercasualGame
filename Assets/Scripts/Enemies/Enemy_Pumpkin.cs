@@ -7,6 +7,7 @@ public class Enemy_Pumpkin : Abstract_Enemy
     protected override void Awake()
     {
         element = Enum_Elements.Fire;
+        dyingAnimation = "SmokeBurst";
         base.Awake();
     }
 }

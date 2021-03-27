@@ -48,9 +48,6 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
         Element = Enum_Elements.Standard;
         Physics2D.IgnoreLayerCollision(8, 8);
     }
-    private void Start()
-    {
-    }
 
     private void Update()
     {
@@ -160,13 +157,8 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
 
     private void CollisionWithEnemy(Collider2D collision)
     {
-        // Анимация врыва врагов
-        if (collision.gameObject.GetComponent<Abstract_Enemy>().Element == Enum_Elements.Water)
-            Instantiate(Resources.Load<GameObject>("FireBurst"), collision.gameObject.transform.position, Quaternion.identity);
-        if (collision.gameObject.GetComponent<Abstract_Enemy>().Element == Enum_Elements.Fire)
-            Instantiate(Resources.Load<GameObject>("SmokeBurst"), collision.gameObject.transform.position, Quaternion.identity);
+        StartCoroutine(collision.GetComponent<Abstract_Enemy>().Dying());
 
-        Destroy(collision.gameObject);
         bouncesNumber++;
         killCount++;
         GameManager.Instance.Score++;

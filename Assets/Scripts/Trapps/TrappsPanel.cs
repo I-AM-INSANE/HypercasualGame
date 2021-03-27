@@ -12,6 +12,8 @@ public class TrappsPanel : MonoBehaviour
     [SerializeField] GameObject dropBomb;
     private GameObject objectForSpawn;
 
+    Button selectedButton;
+
     #endregion
 
     #region Methods
@@ -35,10 +37,13 @@ public class TrappsPanel : MonoBehaviour
 
     private void PlaceTower()
     {
-        Vector3 positionForSpawn = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        positionForSpawn.z = - Camera.main.transform.position.z;
-        Instantiate(objectForSpawn, positionForSpawn, Quaternion.identity);
-        objectForSpawn = null;
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            Vector3 positionForSpawn = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            positionForSpawn.z = -Camera.main.transform.position.z;
+            Instantiate(objectForSpawn, positionForSpawn, Quaternion.identity);
+            objectForSpawn = null;
+        }
     }
 
     #endregion

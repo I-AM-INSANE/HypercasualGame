@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8987188473200071320}
   - component: {fileID: 6123772195823275906}
   - component: {fileID: 410342546137992877}
+  - component: {fileID: 1838902768}
+  - component: {fileID: 1984598991}
   m_Layer: 0
   m_Name: Grenade
   m_TagString: Untagged
@@ -94,3 +96,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bdb038e3cadaf14f981338b16ede904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1838902768
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932317953308865451}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c208fb19b8407624e8a591779ad19d28, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &1984598991
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932317953308865451}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.6

@@ -20,23 +20,26 @@ public abstract class Abstract_ExploddingTrapps : MonoBehaviour
     IEnumerator Explosion()
     {
         yield return new WaitForSeconds(explosionDelay);
-        GameObject explosion = Instantiate(Resources.Load<GameObject>(trapAnimName), gameObject.transform.position, Quaternion.identity);
-        Destroy(gameObject);
-        Debug.Log(explosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
-        while (explosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length <=
-            explosion.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length / 2)
-        {
-            yield return null;
-        }
-        explosion.GetComponent<CircleCollider2D>().enabled = true;
+        Animator anim = GetComponent<Animator>();
+        anim.Play(trapAnimName);
+        StartCoroutine(DestroyAnimation());
+        yield return new WaitForSeconds(GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length / 4);
+        GetComponent<Collider2D>().enabled = true;
     }
 
-    private void OnTriggerStay(Collider other)
+    IEnumerator DestroyAnimation()
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        yield return new WaitForSeconds(GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        Debug.Log(GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(other.gameObject);
-            Debug.Log("CHECK");
+            GameManager.Instance.Score++;
+            Destroy(collision.gameObject);
         }
     }
 
