@@ -146,10 +146,9 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Enum_Elements enemyElement = collision.GetComponent<Abstract_Enemy>().Element;
-
         if (collision.gameObject.CompareTag("Enemy")) // Столкновение с врагом
-        {   
+        {
+            Enum_Elements enemyElement = collision.GetComponent<Abstract_Enemy>().Element;
             // Проверка соответствия стихий
             if (enemyElement == Enum_Elements.Fire && Element == Enum_Elements.Water ||
                 enemyElement == Enum_Elements.Water && Element == Enum_Elements.Fire)

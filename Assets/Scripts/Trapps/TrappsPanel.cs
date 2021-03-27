@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class TrappsPanel : MonoBehaviour
 {
@@ -26,10 +27,18 @@ public class TrappsPanel : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && objectForSpawn != null)
         {
-            Instantiate(objectForSpawn);
+            PlaceTower();
         }
+    }
+
+    private void PlaceTower()
+    {
+        Vector3 positionForSpawn = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        positionForSpawn.z = - Camera.main.transform.position.z;
+        Instantiate(objectForSpawn, positionForSpawn, Quaternion.identity);
+        objectForSpawn = null;
     }
 
     #endregion
