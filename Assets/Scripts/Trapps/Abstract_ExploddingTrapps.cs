@@ -30,7 +30,6 @@ public abstract class Abstract_ExploddingTrapps : MonoBehaviour
     IEnumerator DestroyAnimation()
     {
         yield return new WaitForSeconds(GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
-        Debug.Log(GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         Destroy(gameObject);
     }
 

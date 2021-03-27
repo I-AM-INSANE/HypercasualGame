@@ -8,25 +8,26 @@ public class TrappsPanel : MonoBehaviour
 {
     #region Fields
 
-    [SerializeField] GameObject grenade;
-    [SerializeField] GameObject dropBomb;
+    [SerializeField] private Sprite grenadeSprite;
+    [SerializeField] private Sprite grenadeSpriteSelected;
+    [SerializeField] private Sprite dropBombSprite;
+    [SerializeField] private Sprite dropBombSpriteSelected;
+
+    [SerializeField] private GameObject grenade;
+    [SerializeField] private GameObject dropBomb;
     private GameObject objectForSpawn;
 
-    Button selectedButton;
+    private Button grenadeBtn;
+    private Button dropBombBtn;
 
     #endregion
 
     #region Methods
-
-    public void OnGrenadePressed()
+    private void Awake()
     {
-        objectForSpawn = grenade;
+        grenadeBtn = transform.Find("GrenadeButton").GetComponent<Button>();
+        dropBombBtn = transform.Find("DropBombButton").GetComponent<Button>();
     }
-    public void OnDropBombPressed()
-    {
-        objectForSpawn = dropBomb;
-    }
-
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && objectForSpawn != null)
@@ -34,15 +35,49 @@ public class TrappsPanel : MonoBehaviour
             PlaceTower();
         }
     }
+    public void OnGrenadePressed()
+    {
+        objectForSpawn = grenade;
+        grenadeBtn.GetComponent<Image>().sprite = grenadeSpriteSelected;
+        DisableButtons();
+    }
+    public void OnDropBombPressed()
+    {
+        objectForSpawn = dropBomb;
+        dropBombBtn.GetComponent<Image>().sprite = dropBombSpriteSelected;
+        DisableButtons();
+    }
 
     private void PlaceTower()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        Vector3 positionForSpawn = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        positionForSpawn.z = - Camera.main.transform.position.z;
+        Instantiate(objectForSpawn, positionForSpawn, Quaternion.identity);
+        objectForSpawn = null;
+        ChangeSpritesToDefault();
+        EnableButtons();
+    }
+
+    private void ChangeSpritesToDefault()
+    {
+        grenadeBtn.GetComponent<Image>().sprite = grenadeSprite;
+        dropBombBtn.GetComponent<Image>().sprite = dropBombSprite;
+    }
+
+    private void DisableButtons()
+    {
+        Button[] buttons = GetComponentsInChildren<Button>();
+        foreach (Button button in buttons)
         {
-            Vector3 positionForSpawn = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            positionForSpawn.z = -Camera.main.transform.position.z;
-            Instantiate(objectForSpawn, positionForSpawn, Quaternion.identity);
-            objectForSpawn = null;
+            button.enabled = false;        
+        }
+    }
+    private void EnableButtons()
+    {
+        Button[] buttons = GetComponentsInChildren<Button>();
+        foreach (Button button in buttons)
+        {
+            button.enabled = true;
         }
     }
 
