@@ -36,7 +36,6 @@ public class EnemySpawner : MonoBehaviour
         {
             spawnTimer.Duration = Random.Range(minSpawnTime, maxSpawnTime);
             SpawnEnemy();
-            Debug.Log(spawnTimer.Duration);
         }
 
         if (GameManager.Instance.Score % 5 != 0)
