@@ -157,6 +157,15 @@ public abstract class Abstract_Ball : MonoBehaviour, IInteractable
 
     private void CollisionWithEnemy(Collider2D collision)
     {
+        Transform childrensTransform = collision.GetComponentInChildren<Transform>();
+        if (childrensTransform != null)
+        {
+            foreach (Transform transform in childrensTransform)
+            {
+                Destroy(transform.gameObject);
+            }
+        }
+            
         StartCoroutine(collision.GetComponent<Abstract_Enemy>().Dying());
 
         bouncesNumber++;
