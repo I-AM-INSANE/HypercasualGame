@@ -6,8 +6,8 @@ TagManager:
   tags:
   - GameBorder
   - Enemy
-  - MultiEnemy
   - Button
+  - Ball
   layers:
   - Default
   - TransparentFX
